@@ -1,0 +1,71 @@
+# encoding: utf-8
+# Italian strings go here for Rails i18n
+it:
+  label_resources: Risorse
+  label_resource_booking_plural: Prenotazioni risorse
+  label_resources_ghost_bookings: Prenotazioni di fantasmi
+  label_resource_planning: Pianificazione risorse
+  label_resources_new_booking: Nuova prenotazione
+  label_resources_edit_booking: Modifica prenotazione
+  label_resources_leave_comment: Lascia un commento
+  label_resources_scheduled: Programmato
+  label_resources_total_scheduled: Totale programmat
+  label_resources_scheduled_for: per
+  label_resources_workday_length: Durata del giorno lavorativo
+  label_resources_load: Carica
+  label_resources_full_load: A pieno carico
+  label_resources_overload: Sovraccarico
+  label_resources_underload: Sottocarico
+  label_resources_f_hour_short: "%{value}h"
+  label_resources_dates: Date
+  label_resources_assigned_to_user: Assegnato all'utente
+  label_resources_not_assigned_to_user: Non assegnato all'utente
+  label_resources_closed_issues: Segnalazioni chiuse
+  label_resources_setting_taken_from: Questa impostazione è stata presa da
+  label_resources_line_title: Linea titolo
+  label_resources_issue_subject: Soggetto segnalazione
+  label_resources_hours_per_day: Ore per giornata
+  label_resources_total_hours: Ore totali
+  label_my_resource_bookings: Le mie prenotazioni di risorse
+  label_resources_unbooked_time: Tempo non prenotato
+  label_resources_capacity: Capacità
+  label_resources_allocated: Allocato
+  label_resources_spent: Speso
+  label_resources_weekends: Fine settimane
+  label_resources_project_names: Nomi di progetto
+  label_resources_show_more:  Mostra di più...
+
+  label_resource_booking_added: Prenotazione risorse aggiunta
+  label_resource_booking_updated: Aggiornata la prenotazione delle risorse
+  label_resource_booking_for_issue_added: "La prenotazione delle risorse per la segnalazione %{id} è stata aggiunta da %{author}."
+  label_resource_booking_for_project_added: "La prenotazione delle risorse per il progetto %{id} è stata aggiunta da %{author}."
+  label_resource_booking_for_issue_updated: "La prenotazione delle risorse per la segnalazione %{id} è stata aggiornata da %{author}."
+  label_resource_booking_for_project_updated: "La prenotazione delle risorse per il progetto %{id} è stata aggiornata da %{author}."
+
+  project_module_resources: Risorse
+  permission_view_resources: Visualizza le risorse
+  permission_add_booking: Aggiungi prenotazione
+  permission_edit_booking: Modifica prenotazione
+
+  field_end_date: Data di fine
+  field_booking_type: Prenotazione
+  field_start_hour: Ora di inizio
+  field_end_hour: Ora di fine
+  field_hours_per_day: Ore/giorno
+  field_hours_per_day_abbreviation: o/d
+
+  notice_could_not_delete: Impossibile cancellare
+  error_save_failed: Salvataggio fallito.
+
+  label_resources_x_day_off:
+    one: "%{count} giorno di riposo"
+    other: "%{count} giorni di riposo"
+
+  activerecord:
+    errors:
+      messages:
+        greater_than_or_equal_to_start_date: deve essere maggiore o uguale alla data di inizio
+        less_than_or_equal_to_issue_due_date: 'deve essere inferiore o uguale alla_scadenza_di_emissione (%{due_date})'
+        total_time_exceeds_estimated_time: Il tempo totale di tutte le assegnazioni alla segnalazione supera il tempo stimato
+
+  label_resource_updated: Risorsa aggiornata

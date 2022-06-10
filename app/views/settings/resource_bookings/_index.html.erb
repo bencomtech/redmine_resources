@@ -1,0 +1,11 @@
+<p>
+  <%= label_tag 'settings[workday_length]', l(:label_resources_workday_length) %>
+  <% if RedmineResources.people_plugin_installed? %>
+    <%= number_field_tag 'people_settings[workday_length]', RedmineResources.default_workday_length, disabled: true %> <%= l(:field_hours) %>
+    <em class="info">
+      <%= l(:label_resources_setting_taken_from) %> <%= link_to l(:label_people), people_settings_path %>
+    </em>
+  <% else %>
+    <%= number_field_tag 'settings[workday_length]', @settings['workday_length'], in: 0..24, step: 'any', required: true %> <%= l(:field_hours) %>
+  <% end %>
+</p>

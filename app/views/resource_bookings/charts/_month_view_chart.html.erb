@@ -1,0 +1,211 @@
+<%
+  zoom = @rb_chart.column_width
+
+  subject_width = RedmineResources::Charts::MonthViewBookingsChart::SUBJECT_WIDTH
+  header_height = RedmineResources::Charts::MonthViewBookingsChart::HEADER_HEIGHT
+  headers_height = RedmineResources::Charts::MonthViewBookingsChart::HEADERS_HEIGHT
+
+  # Width of the entire chart
+  g_width = ((@rb_chart.date_to - @rb_chart.date_from + 1) * zoom).to_i
+  @rb_chart.render
+  g_height = [@rb_chart.height, 206].max
+  t_height = g_height + headers_height
+%>
+
+<table class="resource-planning-chart " style="width:100%; border:0; border-collapse: collapse;">
+  <tr>
+    <td style="width: <%= subject_width %>px; padding:0px;" class="gantt_subjects_column">
+      <%
+        style = 'position:relative;'
+        style += "height: #{t_height + 24}px;"
+        style += "width: #{subject_width + 1}px;"
+      %>
+      <%= content_tag(:div, style: style, class: 'gantt_subjects_container') do %>
+        <%
+          style = Redmine::VERSION.to_s < '4.0' ? 'right: -2px;' : 'right: 0;'
+          style += "width: #{subject_width}px;"
+          style += "height: #{headers_height}px;"
+          style += 'background: #eee;'
+          style += 'display: flex;'
+        %>
+        <%= content_tag(:div, '', style: style, class: 'gantt_hdr') do %>
+          <%= link_to_function("#{l(:button_collapse_all)}/#{l(:button_expand_all)}", 'toggleAllUserResourceBookingsGroups()', class: 'toggle-all') %>
+        <% end %>
+        <%
+          style = Redmine::VERSION.to_s < '4.0' ? 'right: -2px;' : 'right: 0;'
+          style += "width: #{subject_width}px;"
+          style += "height: #{t_height}px;"
+          style += 'border-left: 1px solid #c0c0c0;'
+          style += 'overflow: hidden;'
+          style += 'pointer-events: none;'
+        %>
+        <%= content_tag(:div, '', style: style, class: 'gantt_hdr subject_column') %>
+        <%
+          style = Redmine::VERSION.to_s < '4.0' ? 'right: -2px;' : 'right: 0;'
+          style += 'position:relative;'
+          style += "top: #{headers_height + 1}px;"
+        %>
+        <%= content_tag(:div, class: 'resource-subjects', style: style) do %>
+          <%= @rb_chart.subjects.html_safe %>
+        <% end %>
+      <% end %>
+    </td>
+
+    <td>
+      <div style="position: relative; height: <%= t_height + 24 %>px; overflow-x: auto; overflow-y: hidden;" id="gantt_area">
+        <%
+          style = "width: #{g_width - 1}px;"
+          style += "height: #{headers_height}px;"
+          style += 'background: #eee;'
+        %>
+        <%= content_tag(:div, '&nbsp;'.html_safe, style: style, class: 'gantt_hdr') %>
+
+        <% ###### Weeks headers ###### %>
+        <%
+          left = 0
+          height = header_height
+        %>
+        <% if @rb_chart.date_from.cwday == 1 %>
+          <%
+            # @date_from is monday
+            week_f = @rb_chart.date_from
+          %>
+        <% else %>
+          <%
+            # find next monday after @date_from
+            week_f = @rb_chart.date_from + (7 - @rb_chart.date_from.cwday + 1)
+            width = (7 - @rb_chart.date_from.cwday + 1) * zoom - 1
+            style = "left: #{left}px;"
+            style += "width: #{width}px;"
+            style += "height: #{height}px;"
+          %>
+          <%= content_tag(:div, style: style, class: 'gantt_hdr') do %>
+            <%= content_tag(:small) do %>
+              <% if width >= 84 %>
+                <%
+                  from = @rb_chart.date_from
+                  to = from.next_day(7 - from.cwday)
+                %>
+                <%= dates_range_label(from, to) %>
+              <% end %>
+            <% end %>
+          <% end %>
+          <% left = left + width + 1 %>
+        <% end %>
+        <% while week_f <= @rb_chart.date_to %>
+          <%
+            width = ((week_f + 6 <= @rb_chart.date_to) ?
+                         7 * zoom - 1 :
+                         (@rb_chart.date_to - week_f + 1) * zoom - 1).to_i
+
+            style = "left: #{left}px;"
+            style += "width: #{width}px;"
+            style += "height: #{height}px;"
+          %>
+          <%= content_tag(:div, style: style, class: 'gantt_hdr') do %>
+            <%= content_tag(:small) do %>
+              <% if width >= 84 %>
+                <%
+                  last_day_of_week = week_f.next_day(6)
+                  last_day = last_day_of_week > @rb_chart.date_to ? @rb_chart.date_to : last_day_of_week
+                %>
+                <%= dates_range_label(week_f, last_day) %>
+              <% end %>
+            <% end %>
+          <% end %>
+          <%
+            left = left + width + 1
+            week_f = week_f + 7
+          %>
+        <% end %>
+
+        <% ###### Day numbers headers ###### %>
+        <%
+          left = 0
+          top = 19
+          height = g_height + header_height - 1
+          wday = @rb_chart.date_from.cwday
+          day_num = @rb_chart.date_from
+        %>
+        <% (@rb_chart.date_to - @rb_chart.date_from + 1).to_i.times do %>
+          <%
+            width = zoom - 1
+            style = "left:#{left}px;"
+            style += "top:#{top}px;"
+            style += "width:#{width}px;"
+            style += "height:#{height}px;"
+            style += 'font-size:0.8em;'
+            clss = 'gantt_hdr bookings-column'
+            clss << ' nwday' if @rb_chart.non_working_week_days.include?(wday)
+          %>
+          <%= content_tag(:div, style: style, class: clss) do %>
+            <%= day_num.day %>
+          <% end %>
+          <% if @rb_chart.non_working_week_days.include?(wday) %>
+            <%
+              style = "left: #{left - 1}px;"
+              style += "top: #{headers_height + 1}px;"
+              style += "width: #{zoom + 1}px;"
+              style += "height: #{height - header_height}px;"
+              style += 'font-size:0.8em;'
+            %>
+            <%= content_tag(:div, '', style: style, class: 'gantt_hdr service-column nwday-blur') %>
+          <% end %>
+          <%
+            left = left + width + 1
+            day_num = day_num + 1
+            wday = wday + 1
+            wday = 1 if wday > 7
+          %>
+        <% end %>
+
+        <%= content_tag(:div, class: 'resource-lines', style: "position:absolute; top: #{headers_height + 1}px; width: #{g_width - 1}px;") do %>
+          <%= @rb_chart.lines.html_safe %>
+        <% end %>
+
+        <% ###### Today red line (excluded from cache) ###### %>
+        <% if User.current.today >= @rb_chart.date_from and User.current.today <= @rb_chart.date_to %>
+          <%
+            today_left = (((User.current.today - @rb_chart.date_from + 1) * zoom).floor() - 1).to_i
+            style = ""
+            style += "position: absolute;"
+            style += "height: #{g_height}px;"
+            style += "top: #{headers_height + 1}px;"
+            style += "left: #{today_left}px;"
+            style += "width:10px;"
+            style += "border-left: 1px dashed red;"
+          %>
+          <%= content_tag(:div, '&nbsp;'.html_safe, :style => style, :id => 'today_line', class: 'service-column') %>
+        <% end %>
+      </div>
+    </td>
+  </tr>
+</table>
+
+<table style="width:100%">
+  <tr>
+    <td style="text-align:left;">
+      <%= link_to "\xc2\xab " + l(:label_previous), { params: request.query_parameters.merge(@rb_chart.params_previous) }, accesskey: accesskey(:previous) %>
+    </td>
+    <td style="text-align:right;">
+      <%= link_to l(:label_next) + " \xc2\xbb", { params: request.query_parameters.merge(@rb_chart.params_next) }, accesskey: accesskey(:next) %>
+    </td>
+  </tr>
+</table>
+
+<%= javascript_tag do %>
+  $(function () {
+    addEditableBarsOnClickListener();
+
+    var columnWidth = <%= @rb_chart.column_width %>;
+    initializeDraggableBars(columnWidth);
+    initializeResizableBars(columnWidth);
+    initializeAddBookingButtons(columnWidth);
+    initializeBarSplitLines(columnWidth);
+    initializeResizableSubjectsColumn();
+  });
+
+  $(window).resize(function() {
+    initializeResizableSubjectsColumn();
+  });
+<% end %>

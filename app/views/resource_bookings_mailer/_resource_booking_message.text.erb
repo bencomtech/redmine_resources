@@ -1,0 +1,10 @@
+<% if @issue.present? %>
+  <%= l(title, id: "##{@issue.id}", author: @author) %>
+<% else %>
+  <%= l(title, id: "#{@project}", author: @author) %>
+<% end %>
+----------------------------------------
+
+<%= link_to @resource_booking.event_title, @resource_booking.url_options %>
+
+<%= render_resource_booking_attributes(@resource_booking) %>

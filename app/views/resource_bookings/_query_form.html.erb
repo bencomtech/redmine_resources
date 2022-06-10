@@ -1,0 +1,79 @@
+<%= form_tag({ controller: 'resource_bookings', action: 'index', project_id: @project, months: params[:months] },
+             method: :get, id: 'query_form') do %>
+
+  <%= hidden_field_tag 'set_filter', '1' %>
+  <div id="query_form_with_buttons" class="hide-when-print">
+    <div id="query_form_content">
+      <fieldset id="filters" class="collapsible">
+        <legend class="icon icon-expended" onclick="toggleFieldset(this);"><%= l(:label_filter_plural) %></legend>
+        <div style="<%= @query.new_record? ? '' : 'display: none;' %>">
+          <%= render partial: 'queries/filters', locals: { query: @query } %>
+        </div>
+      </fieldset>
+
+      <fieldset id="options" class="collapsible collapsed">
+        <legend class="icon icon-collapsed" onclick="toggleFieldset(this);"><%= l(:label_options) %></legend>
+        <div style="display: none;">
+          <table>
+            <tr>
+              <td><%= label_tag :chart_type, l(:label_resources_chart_type) %></td>
+              <td><%= select_tag :chart_type, custom_options_for_select(chart_type_options, @query.chart_type),
+                                 onchange: "toggleBlockGroup('chart-type', this.value);" %></td>
+            </tr>
+
+            <tr class="chart-type <%= ResourceBookingQuery::MONTH_VIEW_CHART %>" style="display: none;">
+              <td><%= label_tag :line_title_type, l(:label_resources_line_title) %></td>
+              <td><%= select_tag :line_title_type, custom_options_for_select(line_title_type_options, @query.line_title_type) %></td>
+            </tr>
+            <tr>
+              <td><%= l(:button_show) %></td>
+              <td>
+
+                <label for="show_versions">
+                  <%= check_box_with_label('show_versions', :label_version_plural) %>
+                </label>
+
+                <label for="show_issues" class="chart-type <%= ResourceBookingQuery::MONTH_VIEW_CHART %>" style="display: none;">
+                  <%= check_box 'query', 'show_issues', id: 'show_issues' %>
+                  <%= l(:label_issue_plural) %>
+                </label>
+
+                <label for="show_ghost_bookings" class="chart-type <%= ResourceBookingQuery::MONTH_VIEW_CHART %>" style="display: none;">
+                  <%= check_box_with_label('show_ghost_bookings', :label_resources_ghost_bookings) %>
+                </label>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </fieldset>
+    </div>
+
+    <% if @query.month_view_chart? %>
+      <p class="contextual">
+        <%= zoom_link(@rb_chart, :in) %>
+        <%= zoom_link(@rb_chart, :out) %>
+      </p>
+    <% end %>
+
+    <p class="buttons">
+      <span class="chart-type <%= ResourceBookingQuery::MONTH_VIEW_CHART %>" style="display: none;">
+        <%= text_field_tag 'months', @rb_chart.months, size: 2 %>
+        <%= l(:label_months_from) %>
+      </span>
+      <%= text_field 'query', 'date_from', size: 12, type: 'date' %><%= calendar_for('query_date_from') %>
+
+      <%= hidden_field_tag('zoom', @rb_chart.zoom) if @query.month_view_chart? %>
+
+      <%= link_to_function l(:button_apply), '$("#query_form").submit()', class: 'icon icon-checked' %>
+      <%= link_to l(:button_clear), { project_id: @project, set_filter: 1 }, class: 'icon icon-reload' %>
+    </p>
+  </div>
+<% end %>
+
+<%= error_messages_for 'query' %>
+
+<%= javascript_tag do %>
+  $(function () {
+    $('#chart_type').trigger('change');
+  });
+<% end %>

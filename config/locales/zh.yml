@@ -1,0 +1,69 @@
+zh:
+  label_resources: 资源
+  label_resource_booking_plural: 资源预订
+  label_resources_ghost_bookings: 鬼魂预订
+  label_resource_planning: 资源规划
+  label_resources_new_booking: 新的预订
+  label_resources_edit_booking: 编辑预订
+  label_resources_leave_comment: 发表评论
+  label_resources_scheduled: 计划中的
+  label_resources_total_scheduled: 排定的资源总数
+  label_resources_scheduled_for: 给
+  label_resources_workday_length: 工作日长度
+  label_resources_load: 加载
+  label_resources_full_load: 满载
+  label_resources_overload: 过载
+  label_resources_underload: 欠载
+  label_resources_f_hour_short: "%{value} 小时"
+  label_resources_dates: 日期
+  label_resources_assigned_to_user: 分配给用户
+  label_resources_not_assigned_to_user: 未分配给用户
+  label_resources_closed_issues: 已关闭的问题
+  label_resources_setting_taken_from: 此设置取自于
+  label_resources_line_title: 行标题
+  label_resources_issue_subject: 问题主题
+  label_resources_hours_per_day: 每天工作时间
+  label_resources_total_hours: 总时数
+  label_my_resource_bookings: 我的资源预订量
+  label_resources_unbooked_time: 未预订时间
+  label_resources_capacity: 容量
+  label_resources_allocated: 已分配的资源
+  label_resources_spent: 支出
+  label_resources_weekends: 周末
+  label_resources_project_names: 项目名称
+  label_resources_show_more: 显示更多...
+
+  label_resource_booking_added: 资源预订已添加
+  label_resource_booking_updated: 资源预订已更新
+  label_resource_booking_for_issue_added: "问题 %{id} 的资源预订已被 %{author}. 添加"
+  label_resource_booking_for_project_added: "项目 %{id} 的资源预订已被 %{author}. 添加"
+  label_resource_booking_for_issue_updated: "问题 %{id} 的资源预订已被 %{author} 更新."
+  label_resource_booking_for_project_updated: "项目 %{id} 的资源预订已被 %{author} 更新."
+
+  project_module_resources: 资源
+  permission_view_resources: 查看资源
+  permission_add_booking: 添加预订
+  permission_edit_booking: 编辑预订
+
+  field_end_date: 结束日期
+  field_booking_type: 预订
+  field_start_hour: 开始时间
+  field_end_hour: 结束时间
+  field_hours_per_day: 小时/日
+  field_hours_per_day_abbreviation: 小时/天
+
+  notice_could_not_delete: 无法删除
+  error_save_failed: 保存失败.
+
+  label_resources_x_day_off:
+    one: "%{count} day off"
+    other: "%{count} days off"
+
+  activerecord:
+    errors:
+      messages:
+        greater_than_or_equal_to_start_date: 必须大于或等于开始日期
+        less_than_or_equal_to_issue_due_date: "必须小于或等于到期日 (%{due_date})"
+        total_time_exceeds_estimated_time: 对该问题的所有任务的总时间超过了估计时间
+
+  label_resource_updated: 资源已更新

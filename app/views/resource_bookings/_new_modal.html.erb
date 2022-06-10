@@ -1,0 +1,9 @@
+<h3 class="title"><%= l(:label_resources_new_booking) %></h3>
+
+<%= labelled_form_for @resource_booking, url: { action: :create, project_id: @project }, remote: true, html: { id: 'resource-booking-form', method: :post } do |f| %>
+  <%= render partial: 'form', locals: { f: f, update_url: j(new_resource_booking_path(project_id: @project)) } %>
+  <p class="buttons">
+    <%= submit_tag l(:button_create), name: nil, onclick: 'hideModal(this);' %>
+    <%= submit_tag l(:button_cancel), name: nil, onclick: 'hideModal(this);', type: 'button' %>
+  </p>
+<% end %>

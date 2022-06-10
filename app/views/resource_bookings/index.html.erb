@@ -1,0 +1,27 @@
+<div class="contextual">
+  <% if User.current.allowed_to?(:add_booking, @project, global: true) %>
+    <%= link_to l(:label_resources_new_booking), new_resource_booking_path(project_id: @project), remote: true, method: 'get', class: 'icon icon-add' %>
+  <% end %>
+
+  <% if !@query.new_record? && @query.editable_by?(User.current) %>
+    <%= link_to l(:button_edit), edit_query_path(@query, gantt: 1), :class => 'icon icon-edit' %>
+    <%= delete_link query_path(@query, gantt: 1) %>
+  <% end %>
+</div>
+
+<h2><%= l(:label_resource_planning) %></h2>
+
+<%= render partial: 'query_form' %>
+
+<% if @query.valid? %>
+  <% @rb_chart.view = self %>
+  <%= render partial: "resource_bookings/charts/#{@query.chart_type}" %>
+<% end %>
+
+<% html_title(l(:label_resources)) -%>
+
+<% content_for :header_tags do %>
+  <%= stylesheet_link_tag(:redmine_resources, plugin: 'redmine_resources') %>
+  <%= javascript_include_tag(:redmine_resources, plugin: 'redmine_resources') %>
+  <%= select2_assets %>
+<% end %>

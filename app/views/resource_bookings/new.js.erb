@@ -1,0 +1,4 @@
+$('#ajax-modal').html('<%= j(render partial: 'new_modal') %>');
+showModal('ajax-modal', '600px');
+
+<%= render partial: 'update_chart' if @user_blocks.present? %>

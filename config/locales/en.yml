@@ -1,0 +1,83 @@
+en:
+  label_resources: Resources
+  label_resource_booking_plural: Resource bookings
+  label_resources_ghost_bookings: Ghost bookings
+  label_resource_planning: Resource planning
+  label_resources_new_booking: New booking
+  label_resources_edit_booking: Edit booking
+  label_resources_leave_comment: Leave a comment
+  label_resources_scheduled: Scheduled
+  label_resources_total_scheduled: Total scheduled
+  label_resources_scheduled_for: for
+  label_resources_workday_length: Workday length
+  label_resources_load: Load
+  label_resources_full_load: Full load
+  label_resources_overload: Overload
+  label_resources_underload: Underload
+  label_resources_f_hour_short: "%{value}h"
+  label_resources_dates: Dates
+  label_resources_assigned_to_user: Assigned to user
+  label_resources_not_assigned_to_user: Not assigned to user
+  label_resources_closed_issues: Closed issues
+  label_resources_setting_taken_from: This setting taken from
+  label_resources_line_title: Line title
+  label_resources_issue_subject: Issue subject
+  label_resources_hours_per_day: Hours per day
+  label_resources_total_hours: Total hours
+  label_my_resource_bookings: My resource bookings
+  label_resources_unbooked_time: Unbooked time
+  label_resources_capacity: Capacity
+  label_resources_allocated: Allocated
+  label_resources_spent: Spent
+  label_resources_weekends: Weekends
+  label_resources_project_names: Project names
+  label_resources_show_more: Show more...
+
+  label_resource_booking_added: Resource booking added
+  label_resource_booking_updated: Resource booking updated
+  label_resource_booking_for_issue_added: 'Resource booking for issue %{id} has been added by %{author}.'
+  label_resource_booking_for_project_added: 'Resource booking for project %{id} has been added by %{author}.'
+  label_resource_booking_for_issue_updated: 'Resource booking for issue %{id} has been updated by %{author}.'
+  label_resource_booking_for_project_updated: 'Resource booking for project %{id} has been updated by %{author}.'
+
+  project_module_resources: Resources
+  permission_view_resources: View resources
+  permission_add_booking: Add booking
+  permission_edit_booking: Edit booking
+
+  field_end_date: End date
+  field_booking_type: Booking
+  field_start_hour: Start hour
+  field_end_hour: End hour
+  field_hours_per_day: Hours/Day
+  field_hours_per_day_abbreviation: h/d
+
+  notice_could_not_delete: Could not delete
+  error_save_failed: Save failed.
+
+  label_resources_x_day_off:
+    one: "%{count} day off"
+    other: "%{count} days off"
+
+  activerecord:
+    errors:
+      messages:
+        greater_than_or_equal_to_start_date: must be greater than or equal to start date
+        less_than_or_equal_to_issue_due_date: 'must be less than or equal to issue due date (%{due_date})'
+        total_time_exceeds_estimated_time: The total time of all assignments to the issue exceeds the estimated time
+
+  label_resource_updated: Resource updated
+  label_resources_chart_type: Chart type
+  label_resources_week_start: Week start
+  label_resources_group_by: Group by
+  label_resources_planned: Planned
+
+  label_resources_month_view_chart: Month view
+  label_resources_week_view_chart: Week view
+
+  # PRO labels
+  label_resources_week_view_chart_pro: Week view (PRO)
+  label_resources_issue_subject_pro: Issue subject (PRO)
+  label_resources_hours_per_day_pro: Hours per day (PRO)
+  label_version_plural_pro: Versions (PRO)
+  label_resources_ghost_bookings_pro: Ghost bookings (PRO)

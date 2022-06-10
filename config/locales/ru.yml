@@ -1,0 +1,71 @@
+ru:
+  label_resources: Ресурсы
+  label_resource_booking_plural: Назначения
+  label_resources_ghost_bookings: Потенциальные назначения
+  label_resource_planning: Планирование ресурсов
+  label_resources_new_booking: Новое назначение
+  label_resources_edit_booking: Редактировать назначение
+  label_resources_leave_comment: Оставить комментарий
+  label_resources_scheduled: Запланировано
+  label_resources_total_scheduled: Всего запланировано
+  label_resources_scheduled_for: на
+  label_resources_workday_length: Продолжительность рабочего дня
+  label_resources_load: Нагрузка
+  label_resources_full_load: Полная нагрузка
+  label_resources_overload: Перегрузка
+  label_resources_underload: Недогрузка
+  label_resources_f_hour_short: "%{value}ч"
+  label_resources_dates: Даты
+  label_resources_assigned_to_user: Назначено пользователю
+  label_resources_not_assigned_to_user: Не назначено пользователю
+  label_resources_closed_issues: Закрытые задачи
+  label_resources_setting_taken_from: Эта настройка взята из
+  label_resources_line_title: Заголовок линии
+  label_resources_issue_subject: Тема задачи
+  label_resources_hours_per_day: Часов в день
+  label_resources_total_hours: Всего часов
+  label_my_resource_bookings: Мои назначения ресурсов
+  label_resources_unbooked_time: Незапланированное время
+  label_resources_capacity: Общая нагрузка
+  label_resources_allocated: Назначено
+  label_resources_spent: Выполнено
+  label_resources_weekends: Выходные
+  label_resources_project_names: Названия проектов
+  label_resources_show_more: Показать больше...
+
+  label_resource_booking_added: Добавлено назначение
+  label_resource_booking_updated: Назначение обновлено
+  label_resource_booking_for_issue_added: '%{author} добавил назначение на задачу %{id}.'
+  label_resource_booking_for_project_added: '%{author} добавил назначение на проект %{id}.'
+  label_resource_booking_for_issue_updated: '%{author} обновил назначение на задачу %{id}.'
+  label_resource_booking_for_project_updated: '%{author} обновил назначение на проект %{id}.'
+
+  project_module_resources: Ресурсы
+  permission_view_resources: Просмотр ресурсов
+  permission_add_booking: Добавление назначений
+  permission_edit_booking: Редактирование назначений
+
+  field_end_date: Дата завершения
+  field_booking_type: Назначение
+  field_start_hour: Время начала
+  field_end_hour: Время завершения
+  field_hours_per_day: Часов/День
+  field_hours_per_day_abbreviation: ч/д
+
+  notice_could_not_delete: Не удалось удалить
+  error_failed_to_save: Ошибка при сохранении.
+
+  label_resources_x_day_off: "%{count} вх"
+
+  activerecord:
+    errors:
+      messages:
+        greater_than_or_equal_to_start_date: должна быть позднее либо равна дате начала
+        less_than_or_equal_to_issue_due_date: 'должна быть не позднее даты завершения задачи (%{due_date})'
+        total_time_exceeds_estimated_time: Общее время всех назначений на задачу превышает оцененные временные затраты
+
+  label_resource_updated: Ресурс изменен
+  label_resources_chart_type: Тип чарта
+  label_resources_week_start: Начало недели
+  label_resources_group_by: Группировать по
+  label_resources_planned: Запланировано

@@ -1,0 +1,15 @@
+$(function () {
+  renderFlashMessages('<%= render_flash_messages %>')
+
+  <% (@user_blocks || {}).each do |user_id, rb_chart| %>
+    <% rb_chart.view = self %>
+    <% rb_chart.render %>
+
+    updateUserBlock(<%= user_id %>,
+                    '<%= j(rb_chart.subjects.html_safe) %>',
+                    '<%= j(rb_chart.lines.html_safe) %>',
+                    <%= defined?(resize) && resize ? rb_chart.netto_height : 0 %>);
+
+    var columnWidth = <%= rb_chart.column_width %>;
+  <% end %>
+});

@@ -1,0 +1,57 @@
+<%= error_messages_for 'resource_booking' %>
+<%= warning_messages_for 'resource_booking' %>
+
+<div class="box tabular">
+  <% projects = ResourceBooking.allowed_projects %>
+  <% project = @resource_booking.project || projects.first %>
+  <% issue = @resource_booking.issue %>
+
+  <p><%= f.select :project_id, project_tree_options_for_select(projects, selected: project), { required: true }, onchange: "updateResourceBookingFrom('#{update_url}')" %></p>
+  <p><%= f.select :assigned_to_id, principals_options_for_select(project.users, @resource_booking.assigned_to), required: true %></p>
+  <p>
+    <label><%= l(:label_issue) %></label>
+    <%# TODO: Use select2_tag when support for the dropdownParent option will be available
+
+        Problem: Select2 input doesn't work when embedded in a modal window
+        Link: https://select2.org/troubleshooting/common-problems#select2-does-not-function-properly-when-i-use-it-inside-a-bootst
+        ===
+        select2_tag 'resource_booking[issue_id]',
+                    options_for_select(issues.map { |issue| [issue, issue.id] }, @resource_booking.issue.try(:id)),
+                    include_blank: true,
+                    url: issues_autocomplete_resource_bookings_path(project_id: project),
+                    allow_clear: true,
+                    dropdown_parent: 'ajax-modal'
+    %>
+    <%= select_tag 'resource_booking[issue_id]', options_for_select([[issue, issue.try(:id)]], issue.try(:id)), include_blank: true %>
+    <%= javascript_tag do %>
+      $('#resource_booking_issue_id').select2({
+        placeholder: '',
+        width: '95%',
+        allowClear: true,
+        templateResult: formatStateWithLineThrough,
+        containerCssClass: 'icon icon-issue',
+        dropdownParent: $('#ajax-modal'),
+        ajax: {
+          url: function () {
+            return '<%= issues_autocomplete_resource_bookings_path(project_id: project) %>' + '&user_id=' + $('#resource_booking_assigned_to_id').val()
+          },
+          dataType: 'json',
+          delay: 250,
+          data: function (params) {
+            return { q: params.term };
+          },
+          processResults: function (data, params) {
+            return { results: data };
+          },
+          cache: true
+        }
+      });
+    <% end %>
+  </p>
+
+  <p><%= f.text_field :start_date, value: @resource_booking.start_date.try(:to_date), type: 'date', size: 10, required: true %><%= calendar_for('resource_booking_start_date') %></p>
+  <p><%= f.text_field :end_date, value: @resource_booking.end_date.try(:to_date), type: 'date', size: 10 %><%= calendar_for('resource_booking_end_date') %></p>
+
+  <p><%= f.text_field :hours_per_day, required: true %></p>
+  <p><%= f.text_area :notes, rows: 8, placeholder: l(:label_resources_leave_comment) %></p>
+</div>

@@ -1,0 +1,83 @@
+es:
+  label_resources: Recursos
+  label_resource_booking_plural: Reserva de recursos
+  label_resources_ghost_bookings: Reservas fantasma
+  label_resource_planning: Planificación de recursos
+  label_resources_new_booking: Nueva reserva
+  label_resources_edit_booking: Editar reserva
+  label_resources_leave_comment: Dejar un comentario
+  label_resources_scheduled: Programado
+  label_resources_total_scheduled: Total programado
+  label_resources_scheduled_for: para
+  label_resources_workday_length: Duración día laborable
+  label_resources_load: Carga
+  label_resources_full_load: Carga total
+  label_resources_overload: Sobrecarga
+  label_resources_underload: Subcarga
+  label_resources_f_hour_short: "%{value}h"
+  label_resources_dates: Fechas
+  label_resources_assigned_to_user: Asignados a usuario
+  label_resources_not_assigned_to_user: No asignados a usuario
+  label_resources_closed_issues: Peticiones cerradas
+  label_resources_setting_taken_from: Esta configuración se ha tomado de
+  label_resources_line_title: Título de línea
+  label_resources_issue_subject: Asunto de la petición
+  label_resources_hours_per_day: Horas al día
+  label_resources_total_hours: Total horas
+  label_my_resource_bookings: Mis reservas de recursos
+  label_resources_unbooked_time: Tiempo no reservado
+  label_resources_capacity: Capacidad
+  label_resources_allocated: Asignado
+  label_resources_spent: Dedicado
+  label_resources_weekends: Fines de semana
+  label_resources_project_names: Nombres de proyectos
+  label_resources_show_more: Mostrar más...
+
+  label_resource_booking_added: Reserva de recurso añadida
+  label_resource_booking_updated: Reserva de recurso actualizada
+  label_resource_booking_for_issue_added: 'Reserva de recurso para la petición %{id} ha sido añadida por %{author}.'
+  label_resource_booking_for_project_added: 'Reserva de recurso para el proyecto %{id} ha sido añadida por %{author}.'
+  label_resource_booking_for_issue_updated: 'Reserva de recurso para la petición %{id} ha sido actualizada por %{author}.'
+  label_resource_booking_for_project_updated: 'Reserva de recurso para el proyecto %{id} ha sido actualizada por %{author}.'
+
+  project_module_resources: Recursos
+  permission_view_resources: Ver recursos
+  permission_add_booking: Añadir reservas
+  permission_edit_booking: Editar reservas
+
+  field_end_date: Fecha fin
+  field_booking_type: Reserva
+  field_start_hour: Hora de inicio
+  field_end_hour: Hora de fin
+  field_hours_per_day: Horas/Día
+  field_hours_per_day_abbreviation: h/d
+
+  notice_could_not_delete: No se pudo eliminar
+  error_save_failed: Falló el guardado.
+
+  label_resources_x_day_off:
+    one: "%{count} días libres"
+    other: "%{count} días libres"
+
+  activerecord:
+    errors:
+      messages:
+        greater_than_or_equal_to_start_date: debe ser igual o posterior a la fecha de inicio
+        less_than_or_equal_to_issue_due_date: 'debe ser igual o anterior a la fecha fn de la petición (%{due_date})'
+        total_time_exceeds_estimated_time: El tiempo total de todas las asignaciones a la petición excede el tiempo estimado
+
+  label_resource_updated: Recurso actualizado
+  label_resources_chart_type: Tipo de gráfico
+  label_resources_week_start: Inicio de la semana
+  label_resources_group_by: Agrupar por
+  label_resources_planned: Planificado
+
+  label_resources_month_view_chart: Vista de mes
+  label_resources_week_view_chart: Vista de semana
+
+  # PRO labels
+  label_resources_week_view_chart_pro: Vista de semana (PRO)
+  label_resources_issue_subject_pro: Asunto de la petición (PRO)
+  label_resources_hours_per_day_pro: Horas al día (PRO)
+  label_version_plural_pro: Versiones (PRO)
+  label_resources_ghost_bookings_pro: Reservas fantasma (PRO)

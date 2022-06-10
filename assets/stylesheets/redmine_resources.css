@@ -1,0 +1,431 @@
+/*
+This file is a part of Redmine Resources (redmine_resources) plugin,
+resource allocation and management for Redmine
+
+Copyright (C) 2011-2022 RedmineUP
+http://www.redmineup.com/
+
+This file is covering by RedmineUP Proprietary Use License as any images,
+cascading stylesheets, manuals and JavaScript files in any extensions
+produced and/or distributed by redmineup.com. These files are copyrighted by
+redmineup.com (RedmineUP) and cannot be redistributed in any form
+without prior consent from redmineup.com (RedmineUP)
+
+*/
+.icon-resource-booking { background-image:  url(../../../images/calendar.png); }
+
+#resource-booking-form .select2-container--default .select2-selection--single {
+  background: #fff url(../../../images/ticket.png) no-repeat 2px 50%;
+}
+
+.select2-results__option .crossed-out-option {
+  text-decoration: line-through;
+  color: grey;
+}
+
+#warningExplanation {
+  background: url(../../../images/warning.png) 8px 50% no-repeat;
+  background-color: #F3EDD1;
+  border-color: #eadbbc;
+  color: #A6750C;
+  text-align: left;
+}
+
+#warningExplanation ul { font-size: 0.9em; }
+
+/***** Styles of the chart "Resource planning" *****/
+.resource-planning-chart .red_bar { background: #ffb5b5;; border: 1px solid #f66; }
+.resource-planning-chart .yellow_bar { background: rgb(255, 241, 181); border: 1px solid rgb(208, 184, 80); }
+.resource-planning-chart .green_bar { background: #00c600 url(../../../images/task_done.png); border: 1px solid #00c600; }
+
+.resource-planning-chart .task.user {
+  height: 2px;
+  margin-top: 3px;
+}
+
+.resource-planning-chart .task_done {
+  background: #c5e6f7;
+  border-color: #2b9fd8;
+}
+
+.resource-planning-chart .task {
+  height: 14px;
+  line-height: 14px;
+  color: black;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.resource-planning-chart .project.task_todo { height: 2px; }
+
+.resource-planning-chart .task.label.project { color: #888; }
+.resource-planning-chart .task.label.version { color: #888; }
+
+.resource-planning-chart .task.issue-subject-title { color: #4d4d4d; }
+
+.resource-planning-chart .total-allocation {
+  font-size: 0.9em;
+  color: #aaa;
+  font-weight: 400;
+  margin-left: 2px;
+}
+
+.resource-planning-chart .project-issues .res-issue {
+  padding-bottom: 8px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.resource-planning-chart .user-subject {
+  padding: 8px 0 10px 2px;
+}
+
+.resource-planning-chart .user-subject .expander,
+.resource-planning-chart .user-subject .gravatar,
+.resource-planning-chart .user-subject a { vertical-align: middle; }
+
+.resource-planning-chart .user-line { padding: 8px 0 10px; }
+
+.resource-planning-chart .user-resource-bookings { border-bottom: 1px solid #c0c0c0; }
+
+.resource-planning-chart .user-resource-bookings .extra-line,
+.resource-planning-chart .user-resource-bookings .issues-group { display: none; }
+.resource-planning-chart .user-resource-bookings.open .extra-line,
+.resource-planning-chart .user-resource-bookings.open .issues-group { display: block; }
+
+.resource-planning-chart .user-resource-bookings span.expander {
+  background-image: url(../images/arrow_right.png);
+  background-repeat: no-repeat;
+  background-position: 2px 50%;
+  padding-left: 8px;
+  margin-left: 0;
+  cursor: pointer;
+}
+
+.resource-planning-chart .user-resource-bookings.open span.expander {
+  background-image: url(../images/arrow_down.png);
+}
+
+.resource-planning-chart .user-subject,
+.resource-planning-chart .project-subject,
+.resource-planning-chart .issue-subject {
+  height: 20px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.resource-planning-chart .project-subject { height: 28px; }
+
+.resource-planning-chart .user-subject,
+.resource-planning-chart .user-line,
+.resource-planning-chart .issue-line { height: 16px; }
+
+.resource-planning-chart .project-line {
+  position: relative;
+  height: 24px;
+  z-index: 1;
+}
+
+.resource-planning-chart .project-line,
+.resource-planning-chart .issue-line { margin-bottom: 4px; }
+
+.resource-planning-chart .resource-subjects .issues-group,
+.resource-planning-chart .resource-lines .issues-group {
+  border-top: 1px dotted #c0c0c0;
+  overflow: visible;
+  text-align: left;
+  padding: 8px 0;
+}
+
+.resource-planning-chart .resource-subjects .issues-group { font-size: 0.8em; }
+
+.resource-planning-chart .tooltip { height: 16px; }
+.resource-planning-chart div.tooltip:hover span.tip { top: 16px; }
+
+.resource-planning-chart .editable { cursor: pointer; }
+
+.resource-planning-chart .project-line .marker,
+.resource-planning-chart .project-line .task_todo { top: 12px; }
+
+.resource-planning-chart .gantt_subjects_container .gantt_hdr { z-index: auto; }
+
+.resource-planning-chart #gantt_area .gantt_hdr.nwday-blur {
+  border-left: none;
+  border-right: none;
+  background-color: #f1f1f1;
+  color: #999;
+  opacity: 0.5;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.resource-planning-chart .booking-bar {
+  position: absolute;
+  height: 16px;
+}
+
+.resource-planning-chart .booking-bar.ui-draggable-dragging,
+.resource-planning-chart .booking-bar.ui-resizable-resizing { z-index: 1; }
+
+.resource-planning-chart .booking-bar.ui-draggable-dragging .task_done,
+.resource-planning-chart .booking-bar.ui-resizable-resizing .task_done { background: #44abde; }
+
+.resource-planning-chart .ui-resizable-handle { opacity: 0; }
+.resource-planning-chart .booking-bar:hover .ui-resizable-handle { opacity: 1; }
+
+.resource-planning-chart .ui-resizable-e,
+.resource-planning-chart .ui-resizable-w,
+.resource-planning-chart .ui-resizable-resizing { cursor: ew-resize; }
+
+.resource-planning-chart .ui-resizable-e { right: 0; }
+.resource-planning-chart .ui-resizable-w { left: 0; }
+
+.resource-planning-chart .ui-resizable-handle:after {
+  content: '';
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  position: absolute;
+  width: 0px;
+  border-left: 2px dotted #595959;
+  height: 8px;
+  margin: auto;
+}
+
+.resource-planning-chart .resource-lines.is-active * { cursor: inherit; }
+
+.resource-planning-chart .resource-lines.is-active .tooltip,
+.resource-planning-chart .resource-lines.is-active .button-add-booking { display: none; }
+
+.resource-planning-chart .resource-lines.is-active .button-add-booking.is-active { display: block; }
+
+.resource-planning-chart .button-add-booking:hover { opacity: 0.7; }
+.resource-planning-chart .button-add-booking {
+  position: absolute;
+  left: 0px;
+  height: 14px;
+  cursor: cell;
+  text-align: center;
+  background: #e5e5e5;
+  border: 1px dotted #aaa;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  opacity: 0;
+}
+
+.resource-planning-chart .button-add-booking .ui-resizable-e { width: 100%; cursor: cell; }
+.resource-planning-chart .button-add-booking.is-active .ui-resizable-e { cursor: ew-resize; }
+
+.resource-planning-chart .button-add-booking.is-active {
+  background: #44abde;
+  border-color: #2b9fd8;
+  opacity: 1;
+}
+
+.resource-planning-chart .split-line {
+  display: none;
+  cursor: col-resize;
+  margin-left: -3px;
+  opacity: 0;
+  width: 9px;
+  z-index: 26;
+}
+
+.resource-planning-chart .booking-bar.editable .split-line { display: block; }
+
+.resource-planning-chart .split-line:hover { opacity: 1; }
+
+.resource-planning-chart .split-line:after {
+  border-left: 1px dashed black;
+  content: "";
+  left: 4px;
+  width: 1px;
+}
+
+.resource-planning-chart .split-line,
+.resource-planning-chart .split-line:after {
+  position: absolute;
+  top: 0;
+  height: 100%;
+}
+
+.resource-planning-chart .issue-subject.ghost,
+.resource-planning-chart .issue-subject.ghost a { color: #777; }
+
+.resource-planning-chart .unapproved {
+  background-color: #e5e5e5;
+  border: 1px dashed #aaa;
+  background-image: repeating-linear-gradient(45deg, rgba(0, 0, 0, 0.02), rgba(0, 0, 0, 0.02) 5px, rgba(0, 0, 0, 0.07) 5px, rgba(0, 0, 0, 0.07) 10px);
+}
+
+.resource-planning-chart a.toggle-all {
+  color: #aaa;
+  font-size: 80%;
+  margin: auto 4px auto auto;
+  padding: 0 4px;
+  display: none;
+}
+
+.resource-planning-chart .gantt_hdr:hover a.toggle-all {
+  display: block;
+}
+
+
+/***** Styles of widget "My resource bookings" *****/
+.mypage-box#block-my_resource_bookings { line-height: inherit; }
+
+
+/***** Charts styles *****/
+.chart .booking-data { line-height: initial; }
+
+.chart table.cal tbody tr { height: 20px; }
+
+.chart .workload-card {
+  background: rgb(255, 241, 181);
+  border: 1px solid rgb(208, 184, 80);
+  padding: 6px;
+  margin: 6px;
+  min-height: 20px;
+  text-align: center;
+  font-weight: bold;
+  line-height: 20px;
+}
+
+.chart .workload-card.full {
+  background: rgb(255, 241, 181);
+  border: 1px solid rgb(208, 184, 80);
+}
+
+.chart .workload-card.green {
+  background: #9de5a3;
+  border: 1px solid #00c600;
+}
+
+.chart .workload-card.red {
+  background: #ffb5b5;
+  border: 1px solid #f66;
+}
+
+.chart .workload-card.gray {
+  background-color: #e7e9e9;
+  border: 1px solid #d7d7d7;
+}
+
+.chart .booking-card {
+  background: #ddf0f7;
+  border: 1px solid #c6d9f2;
+  padding: 6px;
+  margin: 6px;
+  min-height: 55px;
+}
+
+.chart .booking-card.spent {
+  background-color: #e0fae0;
+  border: solid 1px #b8d4b0;
+}
+
+.chart .booking-card .description-box {
+  background-color: inherit;
+  line-height: 1.25em;
+  min-height: 3.75em; /* (3 * line-height) */
+}
+
+.chart .booking-card .description-box .text-box {
+  position: relative;
+  text-align: justify !important;
+  padding-right: 20px;
+  overflow: hidden;
+  background-color: inherit;
+  height: inherit;
+  min-height: inherit;
+  line-height: inherit;
+}
+
+/* create the ... */
+.chart .booking-card .text-box:before {
+  content: '...';
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+/* hide ... if we have text, which is less than or equal to max lines */
+.chart .booking-card .text-box:after {
+  content: '';
+  position: absolute;
+  right: 0;
+  width: 1em;
+  height: inherit;
+  margin-top: 0.2em;
+  background: inherit;
+  min-height: 3.75em;
+}
+
+.chart .booking-card .project-name {
+  border: 1px solid #d5d5d5;
+  padding: 5px;
+  margin-bottom: 5px;
+  text-align: center;
+  background-color: white;
+}
+
+.chart .spent.spent-time {
+  float: right;
+  background-color: rgb(139, 139, 139);
+  padding: 0px 6px 1px 6px;
+  border-radius: 3px;color: white;
+}
+
+.chart .booking-card  table.progress tr { height: 20px; }
+.chart .booking-card  table.progress { line-height: 20px; }
+
+.chart .booking-card table.progress td.log-time {
+  background-color: #eee;
+  width: 100%;
+  display: none;
+}
+
+.chart .booking-card table.progress:hover td.log-time { display: table; }
+.chart .booking-card table.progress:hover td:not(.log-time) { display: none; }
+#week-view-bookings-chart.chart .booking-card table.progress:hover td.log-time { display: none; }
+#week-view-bookings-chart.chart .booking-card table.progress:hover td:not(.log-time) { display: table-cell; }
+
+.chart .booking-card .tooltip .hours {
+  float: right;
+  font-weight: bold;
+}
+
+.chart .booking-card table.progress td.progress-line {
+  text-align: left;
+  padding: 0 0 0 5px;
+}
+
+.chart td.planned,
+.chart td.underload { background-color: #e0fae0; }
+.chart td.overload { background-color: #ffd1d3; }
+
+.chart .spent.group-name {
+  text-align: center;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: rgb(215, 215, 215);
+  font-weight: bold;
+}
+
+.chart tbody .week-end { background-color: #f6f7f8; }
+
+.chart .versions-card {
+  padding: 6px;
+  margin: 6px;
+}
+
+.chart .versions-card .version:not(:last-child) { margin-bottom: 6px; }
+
+.chart tr.project-group td,
+.chart tr.user-group td {
+  padding: 0.8em 0 0.8em 1em;
+  text-align: left;
+}
